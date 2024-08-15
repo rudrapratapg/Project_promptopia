@@ -18,10 +18,10 @@ const UpdatePrompt = () => {
     const getPromptDetails = async () => {
       const response = await fetch(`/api/prompt/${promptId}`);
       const data = await response.json();
-
+      var newTagString = data.tag.split(",").map(tag => tag.trim()).join(",");
       setPost({
         prompt: data.prompt,
-        tag: data.tag,
+        tag: newTagString,
       });
       setLoading(false);
     };
