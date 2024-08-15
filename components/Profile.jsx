@@ -9,6 +9,16 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       <p className='desc text-left'>{desc}</p>
 
       <div className='mt-10 prompt_layout'>
+      {
+        (data?.length === 0) ? 
+          <div className="flex items-center justify-center h-64  rounded-lg">
+            <p className="text-gray-500 text-lg">
+              There are no prompts posted by the user.
+            </p>
+          </div> 
+        : null
+      }
+
         {data.map((post) => (
           <PromptCard
             key={post._id}

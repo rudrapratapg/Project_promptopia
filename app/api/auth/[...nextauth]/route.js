@@ -23,6 +23,8 @@ const handler = NextAuth({
       try {
         await connectToDB();
 
+        console.log("profile.email : "+profile.email);
+        
         // check if user already exists
         const userExists = await User.findOne({ email: profile.email });
 
@@ -30,7 +32,7 @@ const handler = NextAuth({
         if (!userExists) {
           await User.create({
             email: profile.email,
-            username: profile.name.replaceAll(" ", "").toLowerCase(),
+            username: profile.email.split('@')[0], //.toLowerCase(),
             image: profile.picture,
           });
         }
